@@ -123,3 +123,28 @@
 - 2025 HW2 的 Kaggle 是私有邀请链接（`/t/486f3f5988bd4240b6476b08ab579d0a`），不在公开比赛列表里。
 - **Training Transformer（Pokémon 20×20）这道题没有任何 Kaggle 比赛。** 在 Kaggle 搜 `pokemon` / `transformer` / `hw4` / `ml2025-hw4` 都搜不到它；搜到的 `ml2021spring-hw4`、`ml2023springhw4` 是 2021/2023 的 Self-Attention（说话人分类），不是这道题。它的分只走 JudgeBoi。
 - 课程 policy 原话：「實際修課和旁聽的差別只有 **助教不批改旁聽生作業** 而已」—— 旁听不是被禁止，卡的是 JudgeBoi 的 `Student` 身份和 NTU COOL 的选课名单。有台大邮箱的话，值得绑一次 GitHub 看 role 会不会变成 Student。
+
+## 8. 公开 benchmark 能不能代替 JudgeBoi 拿分
+
+**能，但只限「公开数据集 + 公开评测协议」的那几份，而且拿到的是 benchmark 分数，不是作业分。** 交不了 JudgeBoi 时，这比「完全没数」强，但别混写。
+
+| HW | 数据 / benchmark | 公开？ | 自评能到哪一步 |
+|---|---|---|---|
+| 1 | gpt-oss + HackAPrompt；10 条 public 攻击**原文印在 PDF 里** | ✅ | public 的 10 分可以自己跑；private 4% 不可能 |
+| 2 | MyGO/Ave Mujica 偶像脸 ~2,400 张 | ❌ TA 私有 | 不能 |
+| 3 | — | — | quiz |
+| 4 | `lca0503/ml2025-hw4-pokemon`（HF） | ✅ | FID 可算（换实现会差 1–2 点）；PDR 不可（助教 classifier 未公开） |
+| 5 | `openai/gsm8k` + `mlcommons/ailuminate` | ✅ | GSM8K accuracy 可精确复现；AILuminate safety 只能近似（judge 模型未指定） |
+| 6 | CounterFact + `kmeng01/rome` 的 `experiments/evaluate.py` | ✅ | efficacy / paraphrase / neighborhood / portability 四个分数可精确复现 |
+| 7 | `jp_math_question.json`（notebook 里 `gdown` 那个 20 题文件） | ✅ | public 20 题 accuracy 可精确复现 |
+| 8 | — | — | quiz |
+| 9 | Swiss roll + JSD | ✅ | coding 部分可自己算 |
+| 10 | — | — | quiz |
+
+三条纪律：
+
+1. **写清口径**：标 `benchmark self-eval`，不要写成 JudgeBoi 分数，更不要和真交过的人比排名。
+2. **对齐实现**：FID 用 clean-fid / pytorch-fid / 官方 inception 能差 1–2 点；GSM8K 要用官方 `#### <number>` 抽取规则；ROME 的评测脚本要固定 commit。
+3. **judge 类指标给区间**：AILuminate safety 取决于用哪个 safeguard model（Llama Guard / WildGuard / 官方 judge），报数时写清用的是哪个，别把近似值当官方线。
+
+> 2025 HW6 ≡ 2026 HW5（同一套 GSM8K + AILuminate），2025 HW8 ≡ 2026 HW6（同一套 CounterFact），做过的可以直接迁移。
