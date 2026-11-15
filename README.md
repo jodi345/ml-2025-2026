@@ -54,6 +54,7 @@
 
 - HW10 的 PDF 只在课程页上，仓库里没有（仓库收的是 HW1–9）。
 - 2026 全部截止日期都已过（今天 11/15），这一点比 JudgeBoi 更硬：**有号也交不了**。
+- **HW4 与 2025 HW4 是同一份作业**（2026 PDF 首行写着 `Slide Credit: ML2025 spring HW4`）：sample code 的 code cell 逐字一致，2026 只多一个 `drive.mount`；数据集同为 `lca0503/ml2025-hw4-pokemon`，模型同为 GPT-2 小配置（`n_embd=64 / n_layer=2 / n_head=2 / n_positions=400`）。唯一实质差别是**分数线**——2025 simple ≤84.50 / medium ≤81.00 / strong ≤73.00，2026 simple ≤86.00 / medium ≤80.00 / strong ≤73.00。判分一律用**当年那份 PDF** 的表，别拿 2025 的线当 2026 的。
 
 ## 3. JudgeBoi / NTU COOL 规则速查
 
@@ -96,7 +97,7 @@
 | 1 | AI Agent1 — RAG | JudgeBoi |
 | 2 | AI Agent2 | **Kaggle**（`kaggle.com/t/486f...`） |
 | 3 | Understand Transformer | Gradescope |
-| 4 | Training Transformer | JudgeBoi |
+| 4 | Training Transformer | JudgeBoi（**与 2026 HW4 同一份作业**） |
 | 5 | Fine tune is powerful | JudgeBoi |
 | 6 | Fine-tuning leads to Forgetting | JudgeBoi |
 | 7 | RLHF | Gradescope |
@@ -113,10 +114,12 @@
 2. 按 PDF 的 metric 在本地 / Kaggle kernel 算，和 public baseline 表逐项对比（例：HW4 要 FID 与 PDR 同时达标才算过 simple）。
 3. 结果写进 `SOLUTION.md`，成绩表标 `self-evaluated (not submitted — auditor)`，并附 1–2 个互补指标（RMSE 之外给 R²/MAE，accuracy 之外给 F1/混淆矩阵）。
 4. 能自评的上限就是「有没有过 simple/medium/strong」，拿不到排行榜排名 —— 这要提前说清，别假装有 LB 分数。
+5. **有指标算不了的作业要提前认**：HW4 的 FID 可以自己用 Inception-v3 算，但 PDR 用的是**助教训练的 classifier**，没公开 → 自评只能给 FID，PDR 那栏写「不可测」并注明，别拿自己训的 discriminator 冒充官方 PDR。HW1 的 private 攻击 prompt、HW5 的 private baseline 同理。
 
 ## 7. 已知出入 / 坑
 
 - `policy.pdf` 的总表把 作業一/九/十 标了 JudgeBoi，但 `hw1/hw9/hw10.pdf` 写的是 **JudgeBoi-only / NTU COOL-only** → 以 PDF 为准。
 - 2026 的 Kaggle 链接全部在 **Code 列**（hw1/hw2/hw4/hw5/hw7 的官方 sample code），不是比赛。
 - 2025 HW2 的 Kaggle 是私有邀请链接（`/t/486f3f5988bd4240b6476b08ab579d0a`），不在公开比赛列表里。
+- **Training Transformer（Pokémon 20×20）这道题没有任何 Kaggle 比赛。** 在 Kaggle 搜 `pokemon` / `transformer` / `hw4` / `ml2025-hw4` 都搜不到它；搜到的 `ml2021spring-hw4`、`ml2023springhw4` 是 2021/2023 的 Self-Attention（说话人分类），不是这道题。它的分只走 JudgeBoi。
 - 课程 policy 原话：「實際修課和旁聽的差別只有 **助教不批改旁聽生作業** 而已」—— 旁听不是被禁止，卡的是 JudgeBoi 的 `Student` 身份和 NTU COOL 的选课名单。有台大邮箱的话，值得绑一次 GitHub 看 role 会不会变成 Student。
