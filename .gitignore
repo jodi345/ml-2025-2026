@@ -1,0 +1,11 @@
+# 只把这两个课程目录纳入版本控制，~/learning 下其它内容不进仓库
+/*
+!/.gitignore
+!/README.md
+!/2025 ML/
+!/2026 ML/
+
+.DS_Store
+**/.DS_Store
+.ipynb_checkpoints/
+__pycache__/
